@@ -104,7 +104,6 @@ const prizes = [
   };
   
   const runTickerAnimation = () => {
-    // https://css-tricks.com/get-value-of-css-rotation-through-javascript/
     const values = spinnerStyles.transform.split("(")[1].split(")")[0].split(",");
     const a = values[0];
     const b = values[1];
@@ -157,37 +156,72 @@ spinner.addEventListener("transitionend", () => {
 setupWheel();
 
 // Power 
-const button = document.querySelector(".btn-spin");
-const powerRectangle = document.querySelector(".power-rectangle");
+// const button = document.querySelector(".btn-spin");
+// const powerRectangle = document.querySelector(".power-rectangle");
 
-let holdStartTime = 0;
-let intervalId = null;
+// let holdStartTime = 0;
+// let intervalId = null;
 
-const updatePowerIndicator = () => {
-const maxHoldDuration = 2000;
-const holdDuration = Date.now() - holdStartTime;
-const power = Math.min(100, (holdDuration / maxHoldDuration) * 100);
+// const updatePowerIndicator = () => {
+// const maxHoldDuration = 2000;
+// const holdDuration = Date.now() - holdStartTime;
+// const power = Math.min(100, (holdDuration / maxHoldDuration) * 100);
 
-powerRectangle.style.width = `${power}%`;
-powerRectangle.style.backgroundColor = `rgba(0, 128, 0, ${power / 100})`; 
+// powerRectangle.style.width = `${power}%`;
+// powerRectangle.style.backgroundColor = `rgba(0, 128, 0, ${power / 100})`; 
+// };
+
+// button.addEventListener("mousedown", () => {
+// holdStartTime = Date.now();
+// powerRectangle.style.width = '0'; 
+// powerRectangle.style.backgroundColor = 'rgba(0, 128, 0, 0)'; 
+
+// intervalId = setInterval(updatePowerIndicator, 50);
+// });
+
+// button.addEventListener("mouseup", () => {
+// clearInterval(intervalId);
+// powerRectangle.style.width = '0';
+// powerRectangle.style.backgroundColor = 'rgba(0, 128, 0, 0)'; 
+// });
+
+// button.addEventListener("mouseleave", () => {
+// clearInterval(intervalId);
+// powerRectangle.style.width = '0';
+// powerRectangle.style.backgroundColor = 'rgba(0, 128, 0, 0)';
+// });
+const rangeSlider = document.querySelector(".power-indicator input[type='range']");
+
+const startSpinFromSlider = () => {
+    if (reaper.dataset.reaction !== "resting") {
+        reaper.dataset.reaction = "resting";
+    }
+
+    trigger.disabled = true;
+    const sliderValue = rangeSlider.value;
+    rotation = Math.floor(sliderValue * 360 / 100) + spinertia(2000, 5000);
+    prizeNodes.forEach((prize) => prize.classList.remove(selectedClass));
+    wheel.classList.add(spinClass);
+    spinner.style.setProperty("--rotate", rotation);
+    ticker.style.animation = "none";
+    runTickerAnimation();
 };
 
-button.addEventListener("mousedown", () => {
-holdStartTime = Date.now();
-powerRectangle.style.width = '0'; 
-powerRectangle.style.backgroundColor = 'rgba(0, 128, 0, 0)'; 
+const handleSliderRelease = () => {
+    startSpinFromSlider();
+};
 
-intervalId = setInterval(updatePowerIndicator, 50);
+rangeSlider.addEventListener("mouseup", handleSliderRelease);
+rangeSlider.addEventListener("touchend", handleSliderRelease); 
+
+spinner.addEventListener("transitionend", () => {
+    cancelAnimationFrame(tickerAnim);
+    trigger.disabled = false;
+    trigger.focus();
+    rotation %= 360;
+    selectPrize();
+    wheel.classList.remove(spinClass);
+    spinner.style.setProperty("--rotate", rotation);
 });
 
-button.addEventListener("mouseup", () => {
-clearInterval(intervalId);
-powerRectangle.style.width = '0';
-powerRectangle.style.backgroundColor = 'rgba(0, 128, 0, 0)'; 
-});
-
-button.addEventListener("mouseleave", () => {
-clearInterval(intervalId);
-powerRectangle.style.width = '0';
-powerRectangle.style.backgroundColor = 'rgba(0, 128, 0, 0)';
-});
+setupWheel();
