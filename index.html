@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Spin Wheel</title>
     <link rel="stylesheet" href="./styles.css">
+
 </head>
 <body>
-  <div class="deal-wheel">
-    <img src="./images/watania.png" style="width: 70px; height: 70px; z-index: 2; margin-left: 42%;" alt="">
-
-    <div class="spinner">
-    </div>
-    
+    <div class="deal-wheel">
+        <img src="./images/watania.png" style="width: 80px; height: 80px; z-index: 2; margin-left: 41%;" alt="">
+        <div class="spinner"></div>
+        <button class="btn-spin" style="display: none;"></button>
+        <div class="ticker"></div>
+        <div class="grim-reaper" data-reaction="resting"></div>
+        
     <div class="power-indicator">
-        <input type="range" min="0" max="100" value="50" />
+        <input type="range" min="0" max="100" value="100" />
     </div>
-    <button class="btn-spin">
-    </button>
-    <div class="ticker"></div>
-    <div class="grim-reaper"></div>
-  </div>
-  
+    </div>
 
 
-      <script src="./script.js">
+    <div id="congratulations" class="congratulations-message">
+        <p id="congratulations-text"></p>
+        <img id="congratulations-image" src="" alt="Selected Prize Image">
+    </div>
 
-      </script>
-      
+
+    <script src="./script.js"></script>
 </body>
 </html>

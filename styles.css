@@ -14,8 +14,8 @@ body {
   place-items: center;
   overflow: hidden;
   background-image: 
-  url("./images");
-        
+  url("./images/Gradient-Background.webp");
+  background-size:cover        
 }
 
 .deal-wheel {
@@ -202,37 +202,66 @@ body {
   
   /* Power*/
   .power-indicator {
-    grid-area: power-indicator;
-    position: relative;
-    width: 100%; 
-    height: 40px; 
-    margin-top: 10px; 
-    overflow: hidden;
-    border-radius: 5px; 
-  }
+    position: absolute;
+    top: 50%;
+    left:120%;
+    width: 40px; 
+    height: 300px; 
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-  
-  .power-indicator input[type="range"] {
+.power-indicator input[type="range"] {
     -webkit-appearance: none;
-    width: 99%;
-    height: 30px;
-    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); 
+    width: 100%;
+    height: 100%;
+    writing-mode: vertical-rl; 
+    background: linear-gradient(to top, green, red);
     outline: none;
     opacity: 0.7;
     transition: opacity 0.15s ease-in-out;
-    border: 2px solid #000; 
+    border: 2px solid #000;
+}
 
-  }
-
-  input[type="range"] {
-    size:40px;
-    sizing: 200px;
-  }
-  .power-indicator input[type="range"]::-webkit-slider-thumb {
+.power-indicator input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
+    background: #fff;
+    border: 2px solid #000;
     height: 20px;
-    background: #4CAF50;
+    width: 20px;
     cursor: pointer;
-  }
+}
+
+
+.power-indicator input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  background: none; 
+  background-image: url('/images/image 1872.png'); 
+  background-size: cover; 
+  background-position: center;
+  cursor: pointer;
+  border:none;
+  margin-left:30px
+}
+
+
+
+/* Congratulation Message */
+.congratulations-message {
+  display: none; 
+  text-align: center;
+  margin-top:-20px
+}
+
+.congratulations-message img {
+  max-width: 150px;
+  display: block;
+  margin-left: 20%;
+  margin-top:-20px
+}
