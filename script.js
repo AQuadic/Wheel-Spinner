@@ -78,15 +78,12 @@ const runTickerAnimation = () => {
 };
 
 const selectPrize = () => {
-  // Calculate total weight
   const totalWeight = prizes.reduce((acc, prize) => acc + prize.weight, 0);
 
-  // Generate a random number between 0 and total weight
   let random = Math.random() * totalWeight;
 
   console.log(`Random value for selection: ${random}`);
 
-  // Find the prize based on the random number and weight
   const selectedPrize = prizes.find(({ weight }) => (random -= weight) < 0);
 
   if (!selectedPrize) {
@@ -94,7 +91,6 @@ const selectPrize = () => {
     return;
   }
 
-  // Get the index of the selected prize
   const selectedIndex = prizes.indexOf(selectedPrize);
 
   console.log(`Selected prize: ${selectedPrize.text}, Index: ${selectedIndex}`);
@@ -122,7 +118,6 @@ trigger.addEventListener("click", () => {
   trigger.disabled = true;
   prizeNodes.forEach((prize) => prize.classList.remove(selectedClass));
 
-  // Select prize but don't display yet
   const { prize, index } = selectPrize() || {};
   if (!prize) return;
 
@@ -131,7 +126,7 @@ trigger.addEventListener("click", () => {
   const randomOffset = Math.floor(Math.random() * rotationPerSlice);
   const targetRotation = index * rotationPerSlice + randomOffset;
 
-  rotation = 360 * 5 + targetRotation; // Spin the wheel 5 times, then land on the target slice
+  rotation = 360 * 5 + targetRotation; 
   wheel.classList.add(spinClass);
   spinner.style.setProperty("--rotate", rotation);
   ticker.style.animation = "none";
@@ -146,12 +141,11 @@ spinner.addEventListener("transitionend", () => {
   wheel.classList.remove(spinClass);
   spinner.style.setProperty("--rotate", rotation);
 
-  // Display the prize after the wheel stops spinning
   if (selectedPrize) {
     const selectedIndex = prizes.findIndex(prize => prize.text === selectedPrize.text);
-    prizeNodes[selectedIndex].classList.add(selectedClass); // Add class to highlight selected prize
+    prizeNodes[selectedIndex].classList.add(selectedClass);
     displayPrize(selectedPrize);
-    selectedPrize = null; // Reset selectedPrize
+    selectedPrize = null;
   }
 
   resetSlider();
@@ -167,7 +161,6 @@ const startSpinFromSlider = () => {
   trigger.disabled = true;
   prizeNodes.forEach((prize) => prize.classList.remove(selectedClass));
 
-  // Select prize but don't display yet
   const { prize, index } = selectPrize() || {};
   if (!prize) return;
 
@@ -176,7 +169,7 @@ const startSpinFromSlider = () => {
   const randomOffset = Math.floor(Math.random() * rotationPerSlice);
   const targetRotation = index * rotationPerSlice + randomOffset;
 
-  rotation = 360 * 5 + targetRotation; // Spin the wheel 5 times, then land on the target slice
+  rotation = 360 * 5 + targetRotation; 
   wheel.classList.add(spinClass);
   spinner.style.setProperty("--rotate", rotation);
   ticker.style.animation = "none";
