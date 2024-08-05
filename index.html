@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="./styles.css">
 
 </head>
+<link rel="icon" href="./images/watania.png" type="image/png">
+
 <body>
     <div class="deal-wheel">
-        <img src="./images/watania.png" style="width: 80px; height: 80px; z-index: 2; margin-left: 41%;" alt="">
+        <img src="./images/watania.png" class="logo" style="width: 80px; height: 80px; z-index: 2; margin-left: 41%;" alt="">
         <div class="spinner"></div>
         <button class="btn-spin" style="display: none;"></button>
         <div class="ticker"></div>
@@ -21,11 +23,13 @@
     </div>
 
 
-    <div id="congratulations" class="congratulations-message">
-        <p id="congratulations-text"></p>
-        <img id="congratulations-image" src="" alt="Selected Prize Image">
+    <div id="congratulations" style="display: none; margin-top: -50px;">
+        <h2 id="congratulations-text"></h2>
+        <div class="" style="display: flex; align-items: center; justify-content: center;">
+            <img id="congratulations-image" style="width: 30%; height: 30%;" alt="Prize Image" />
+        </div>
     </div>
-
+    
 
     <script src="./script.js"></script>
 </body>

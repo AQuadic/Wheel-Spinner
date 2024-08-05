@@ -1,12 +1,12 @@
 const prizes = [
-  { text: "Microwave 10", color: "hsl(197 30% 43%)", reaction: "dancing", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" },
-  { text: "Microwave 15", color: "hsl(173 58% 39%)", reaction: "shocked", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" },
-  { text: "Microwave 20", color: "hsl(43 74% 66%)", reaction: "shocked", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" },
-  { text: "Microwave 25", color: "hsl(27 87% 67%)", reaction: "shocked", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" },
-  { text: "Microwave 30 pro", color: "hsl(12 76% 61%)", reaction: "dancing", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" },
-  { text: "10% Off", color: "hsl(350 60% 52%)", reaction: "laughing", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" },
-  { text: "10% Off", color: "hsl(91 43% 54%)", reaction: "laughing", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" },
-  { text: "10% Off", color: "hsl(140 36% 74%)", reaction: "dancing", image: "./images/zmm20d38gb-fr-1500x1500 (1) (1).png" }
+  { text: "Microwave 10", color: "hsl(197 30% 43%)", reaction: "dancing", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 1 },
+  { text: "Microwave 15", color: "hsl(173 58% 39%)", reaction: "shocked", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 0 }, 
+  { text: "Microwave 20", color: "hsl(43 74% 66%)", reaction: "shocked", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 0 }, 
+  { text: "Microwave 25", color: "hsl(27 87% 67%)", reaction: "shocked", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 2 }, 
+  { text: "Microwave 30 pro", color: "hsl(12 76% 61%)", reaction: "dancing", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 4 }, 
+  { text: "10% Off", color: "hsl(350 60% 52%)", reaction: "laughing", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 0 }, 
+  { text: "10% Off", color: "hsl(91 43% 54%)", reaction: "laughing", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 0 }, 
+  { text: "10% Off", color: "hsl(140 36% 74%)", reaction: "dancing", image: "./images/zmm20d38gb-fr-1500x1500.png", weight: 0 } 
 ];
 
 const wheel = document.querySelector(".deal-wheel");
@@ -23,30 +23,31 @@ let tickerAnim;
 let rotation = 0;
 let currentSlice = 0;
 let prizeNodes;
+let selectedPrize;
 
 const createPrizeNodes = () => {
   prizes.forEach(({ text, color, reaction, image }, i) => {
-      const rotation = ((prizeSlice * i) * -1) - prizeOffset;
-      spinner.insertAdjacentHTML(
-          "beforeend",
-          `<li class="prize" data-reaction=${reaction} style="--rotate: ${rotation}deg">
-              <span class="text">${text}</span>
-              <img src="${image}" alt="${text}" />
-          </li>`
-      );
+    const rotation = ((prizeSlice * i) * -1) - prizeOffset;
+    spinner.insertAdjacentHTML(
+      "beforeend",
+      `<li class="prize" data-reaction="${reaction}" style="--rotate: ${rotation}deg">
+        <span class="text">${text}</span>
+        <img src="${image}" alt="${text}" />
+      </li>`
+    );
   });
 };
 
 const createConicGradient = () => {
   spinner.setAttribute(
-      "style",
-      `background: conic-gradient(
-          from -90deg,
-          ${prizes
-              .map(({ color }, i) => `${color} 0 ${(100 / prizes.length) * (prizes.length - i)}%`)
-              .reverse()
-          }
-      );`
+    "style",
+    `background: conic-gradient(
+        from -90deg,
+        ${prizes
+            .map(({ color }, i) => `${color} 0 ${(100 / prizes.length) * (prizes.length - i)}%`)
+            .reverse()
+        }
+    );`
   );
 };
 
@@ -54,12 +55,6 @@ const setupWheel = () => {
   createConicGradient();
   createPrizeNodes();
   prizeNodes = wheel.querySelectorAll(".prize");
-};
-
-const spinertia = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const runTickerAnimation = () => {
@@ -74,40 +69,69 @@ const runTickerAnimation = () => {
   const slice = Math.floor(angle / prizeSlice);
 
   if (currentSlice !== slice) {
-      ticker.style.animation = "none";
-      setTimeout(() => ticker.style.animation = null, 10);
-      currentSlice = slice;
+    ticker.style.animation = "none";
+    setTimeout(() => ticker.style.animation = null, 10);
+    currentSlice = slice;
   }
 
   tickerAnim = requestAnimationFrame(runTickerAnimation);
 };
 
 const selectPrize = () => {
-  const selected = Math.floor(rotation / prizeSlice);
-  prizeNodes[selected].classList.add(selectedClass);
-  reaper.dataset.reaction = prizeNodes[selected].dataset.reaction;
+  // Calculate total weight
+  const totalWeight = prizes.reduce((acc, prize) => acc + prize.weight, 0);
 
+  // Generate a random number between 0 and total weight
+  let random = Math.random() * totalWeight;
+
+  console.log(`Random value for selection: ${random}`);
+
+  // Find the prize based on the random number and weight
+  const selectedPrize = prizes.find(({ weight }) => (random -= weight) < 0);
+
+  if (!selectedPrize) {
+    console.error('No prize selected');
+    return;
+  }
+
+  // Get the index of the selected prize
+  const selectedIndex = prizes.indexOf(selectedPrize);
+
+  console.log(`Selected prize: ${selectedPrize.text}, Index: ${selectedIndex}`);
+
+  return { prize: selectedPrize, index: selectedIndex };
+};
+
+const displayPrize = (selectedPrize) => {
   const congratsMessage = document.getElementById("congratulations");
   const congratsText = document.getElementById("congratulations-text");
   const congratsImage = document.getElementById("congratulations-image");
 
-  congratsText.innerText = `Congratulations! You won ${prizes[selected].text}!`;
-  congratsImage.src = prizes[selected].image;
-  congratsMessage.style.display = 'block'; 
-};
-
-const resetSlider = () => {
-  rangeSlider.value = 100;
+  if (congratsMessage && congratsText && congratsImage) {
+    congratsText.innerText = `Congratulations! You won ${selectedPrize.text}!`;
+    congratsImage.src = selectedPrize.image;
+    congratsMessage.style.display = 'block';
+  }
 };
 
 trigger.addEventListener("click", () => {
   if (reaper.dataset.reaction !== "resting") {
-      reaper.dataset.reaction = "resting";
+    reaper.dataset.reaction = "resting";
   }
 
   trigger.disabled = true;
-  rotation = Math.floor(Math.random() * 360 + spinertia(2000, 5000));
   prizeNodes.forEach((prize) => prize.classList.remove(selectedClass));
+
+  // Select prize but don't display yet
+  const { prize, index } = selectPrize() || {};
+  if (!prize) return;
+
+  selectedPrize = prize;
+  const rotationPerSlice = 360 / prizes.length;
+  const randomOffset = Math.floor(Math.random() * rotationPerSlice);
+  const targetRotation = index * rotationPerSlice + randomOffset;
+
+  rotation = 360 * 5 + targetRotation; // Spin the wheel 5 times, then land on the target slice
   wheel.classList.add(spinClass);
   spinner.style.setProperty("--rotate", rotation);
   ticker.style.animation = "none";
@@ -119,10 +143,17 @@ spinner.addEventListener("transitionend", () => {
   trigger.disabled = false;
   trigger.focus();
   rotation %= 360;
-  selectPrize();
   wheel.classList.remove(spinClass);
   spinner.style.setProperty("--rotate", rotation);
-  
+
+  // Display the prize after the wheel stops spinning
+  if (selectedPrize) {
+    const selectedIndex = prizes.findIndex(prize => prize.text === selectedPrize.text);
+    prizeNodes[selectedIndex].classList.add(selectedClass); // Add class to highlight selected prize
+    displayPrize(selectedPrize);
+    selectedPrize = null; // Reset selectedPrize
+  }
+
   resetSlider();
 });
 
@@ -130,13 +161,22 @@ const rangeSlider = document.querySelector(".power-indicator input[type='range']
 
 const startSpinFromSlider = () => {
   if (reaper.dataset.reaction !== "resting") {
-      reaper.dataset.reaction = "resting";
+    reaper.dataset.reaction = "resting";
   }
 
   trigger.disabled = true;
-  const sliderValue = rangeSlider.value;
-  rotation = Math.floor(sliderValue * 360 / 100) + spinertia(2000, 5000);
   prizeNodes.forEach((prize) => prize.classList.remove(selectedClass));
+
+  // Select prize but don't display yet
+  const { prize, index } = selectPrize() || {};
+  if (!prize) return;
+
+  selectedPrize = prize;
+  const rotationPerSlice = 360 / prizes.length;
+  const randomOffset = Math.floor(Math.random() * rotationPerSlice);
+  const targetRotation = index * rotationPerSlice + randomOffset;
+
+  rotation = 360 * 5 + targetRotation; // Spin the wheel 5 times, then land on the target slice
   wheel.classList.add(spinClass);
   spinner.style.setProperty("--rotate", rotation);
   ticker.style.animation = "none";
@@ -149,5 +189,9 @@ const handleSliderRelease = () => {
 
 rangeSlider.addEventListener("mouseup", handleSliderRelease);
 rangeSlider.addEventListener("touchend", handleSliderRelease);
+
+const resetSlider = () => {
+  rangeSlider.value = 100;
+};
 
 setupWheel();
