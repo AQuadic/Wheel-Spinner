@@ -1,0 +1,102 @@
+.home_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.content img {
+    width: 90px;
+}
+
+.content h2 {
+    position: relative;
+    font-size: 31.79px;
+    font-weight: 400;
+    font-family: Shrikhand;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.header-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo p {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: -20px;
+    font-family: system-ui;
+}
+
+.header_image img {
+    width: 594px;
+    background-image: url('./images/sectoin background.png');
+    background-size: cover;
+    border-radius: 10%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-container label {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: system-ui;
+}
+
+.input-container input {
+    padding: 15px;
+    background-color: #F1F1F1;
+    border: none;
+    border-radius: 10px;
+}
+
+.sign_btn button {
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+    padding: 15px; 
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 20px; 
+    }
+}
+
+@media (max-width: 580px) {
+    .content h2 {
+        font-size: 20.79px; 
+    }
+    .header_image img {
+        width: 100%; 
+        height: auto; 
+    }
+}

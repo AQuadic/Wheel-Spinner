@@ -5,32 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spin Wheel</title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Shrikhand&display=swap" rel="stylesheet">
 
 </head>
 <link rel="icon" href="./images/watania.png" type="image/png">
 
 <body>
-    <div class="deal-wheel">
-        <img src="./images/watania.png" class="logo" style="width: 80px; height: 80px; z-index: 2; margin-left: 41%;" alt="">
-        <div class="spinner"></div>
-        <button class="btn-spin" style="display: none;"></button>
-        <div class="ticker"></div>
-        <div class="grim-reaper" data-reaction="resting"></div>
+    <div class="first_page">
+        <div class="container">
+            <div class="deal-wheel">
+                <div class="logo-container">
+                    <img src="./images/watania.png" class="logo" alt="Watania Logo">
+                </div>           
+                <div class="spinner"></div>
+                <button class="btn-spin" style="display: none;"></button>
+                <div class="ticker"></div>
+                <div class="grim-reaper" data-reaction="resting"></div>
+                
+                <div class="power-indicator">
+                    <input type="range" min="0" max="100" value="100" />
+                </div>
+            </div>
+        </div>
         
-    <div class="power-indicator">
-        <input type="range" min="0" max="100" value="100" />
-    </div>
-    </div>
-
-
-    <div id="congratulations" style="display: none; margin-top: -50px;">
-        <h2 id="congratulations-text"></h2>
-        <div class="" style="display: flex; align-items: center; justify-content: center;">
-            <img id="congratulations-image" style="width: 30%; height: 30%;" alt="Prize Image" />
+    
+        <div class="">
+            <div class="header-logo">
+                <img src="./images/Group93.png" alt="headline">
+                <div class="content">
+                    <h2>September Prizes</h2>
+                    <img src="./images/Group 94.png" alt="">
+                </div>
+                <p>welcome</p>
+            </div>
+            <div id="congratulations" style="display: none;">
+                <h2 id="congratulations-text"></h2>
+                <h2 class="user_name">Hassan Hamdy</h2>
+                <p>Invoice amount, 100000 </p>
+                <div class="" style="display: flex; align-items: center; justify-content: center;">
+                    <img id="congratulations-image" style="width: 30%; height: 30%;" alt="Prize Image" />
+                </div>
+                <button>Print</button>
+            </div>
         </div>
     </div>
-    
-
     <script src="./script.js"></script>
 </body>
 </html>

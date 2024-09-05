@@ -106,7 +106,9 @@ const displayPrize = (selectedPrize) => {
   if (congratsMessage && congratsText && congratsImage) {
     congratsText.innerText = `Congratulations! You won ${selectedPrize.text}!`;
     congratsImage.src = selectedPrize.image;
-    congratsMessage.style.display = 'block';
+    congratsMessage.style.display = 'flex';
+    congratsMessage.style.flexDirection = 'column';
+    congratsMessage.style.alignItems = 'center';    
   }
 };
 

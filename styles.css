@@ -10,12 +10,21 @@ body {
 }
 
 body {
-  display: grid;
+  /* display: grid; */
   place-items: center;
-  overflow: hidden;
-  background-image: 
-  url("./images/Gradient-Background.webp");
-  background-size:cover        
+      
+}
+
+
+.first_page {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 140px; 
+}
+
+.container {
+  background: linear-gradient(162.39deg, #AE0028 14.91%, #E23734 43.46%, #F28140 70.05%, #FAA451 90%);
 }
 
 .deal-wheel {
@@ -31,14 +40,15 @@ body {
   display: grid;
   grid-gap: calc(var(--size) / 20);
   align-items: center;
-    grid-template-areas:
+    /* grid-template-areas:
       "spinner"
       "power-indicator"
-      "trigger";
+      "trigger"; */
   font-family: "Girassol", sans-serif;
   font-size: calc(var(--size) / 21);
   line-height: 1;
   text-transform: lowercase;
+  overflow: hidden;
 }
 
 .deal-wheel > * {
@@ -60,6 +70,8 @@ body {
   transform: rotate(calc(var(--rotate, 25) * 1deg));
   border-radius: 50%;
   box-shadow: inset 0 0 0 calc(var(--size) / 40) hsl(0deg 0% 0% / 0.06);
+  margin-top:60px;
+  margin-right:100px
 }
 
 .spinner * {
@@ -204,7 +216,7 @@ body {
   .power-indicator {
     position: absolute;
     top: 50%;
-    left:120%;
+    left:90%;
     width: 40px; 
     height: 300px; 
     transform: translateY(-50%);
@@ -223,7 +235,7 @@ body {
     outline: none;
     opacity: 0.7;
     transition: opacity 0.15s ease-in-out;
-    /* border: 2px solid #000; */
+    border: 2px solid #000;
 }
 
 .power-indicator input[type="range"]::-webkit-slider-thumb {
@@ -256,7 +268,17 @@ body {
 .congratulations-message {
   display: none; 
   text-align: center;
-  margin-top:-40px
+  margin-top:40px
+}
+
+#congratulations button {
+  border: none;
+  background-color: black;
+  content: white;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  width: 150px;
 }
 
 .congratulations-message img {
@@ -272,4 +294,72 @@ body {
       height: 40px !important; 
       margin-left:42% !important;
       }
+}
+
+.logo-container {
+  position: absolute;
+  top: 50%;
+  left: 39%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  max-width: 100%; 
+  height: auto;
+}
+@media (max-width: 768px) {
+  .logo {
+      width: 60px; 
+      height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+      width: 50px;
+      height: auto;
+  }
+}
+
+.content {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.content h2 {
+  position:relative;
+  font-size:31.79px;
+  font-weight:400;
+  font-family:Shrikhand;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.content img {
+  width: 90px;
+}
+
+.header-logo {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo p {
+  font-size: 13px;
+  font-weight:600;
+  margin-top:-20px
+}
+
+@media (max-width: 890px) {
+  .first_page {
+    display:block;
+  }
+
+  .deal-wheel {
+    margin-bottom:20px;
+  }
 }
