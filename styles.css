@@ -254,7 +254,7 @@ body {
   width: 40px;
   height: 40px;
   background: none; 
-  background-image: url('/images/image_1872.png'); 
+  background-image: url('./images/image_1872.png'); 
   background-size: cover; 
   background-position: center;
   cursor: pointer;
@@ -294,72 +294,4 @@ body {
       height: 40px !important; 
       margin-left:42% !important;
       }
-}
-
-.logo-container {
-  position: absolute;
-  top: 50%;
-  left: 39%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-.logo {
-  width: 60px;
-  height: 60px;
-  max-width: 100%; 
-  height: auto;
-}
-@media (max-width: 768px) {
-  .logo {
-      width: 60px; 
-      height: auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
-      width: 50px;
-      height: auto;
-  }
-}
-
-.content {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.content h2 {
-  position:relative;
-  font-size:31.79px;
-  font-weight:400;
-  font-family:Shrikhand;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.content img {
-  width: 90px;
-}
-
-.header-logo {
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.header-logo p {
-  font-size: 13px;
-  font-weight:600;
-  margin-top:-20px
-}
-
-@media (max-width: 890px) {
-  .first_page {
-    display:block;
-  }
-
-  .deal-wheel {
-    margin-bottom:20px;
-  }
 }
