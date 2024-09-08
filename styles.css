@@ -289,28 +289,47 @@ body {
 }
 
 @media (max-width: 768px) {
-  .deal-wheel .logo {
-      width: 40px !important; 
-      height: 40px !important; 
-      margin-left:42% !important;
-      }
-}
-
-@media (max-width: 768px) {
   .first_page {
     grid-template-columns: 1fr;
       }
 }
 
-.logo-container {
-  z-index: 2;
-    position: absolute;
-    left: 39%;
-    top:57%
+.header-logo .content {
+  display:flex;
+  align-items:center;
+  margin-top:-30px;
 }
 
-.logo-container .logo {
-  width:50px;
-  height:50px;
-  transform:translate(-50% , -50%);
+.content h2 {
+  position: relative;
+  font-size: 31.79px;
+  font-weight: 400;
+  font-family: Shrikhand;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
+
+.header-logo p {
+  position: relative;
+    left: 12%;
+    margin-top: -59px;
+}
+
+.logo-container img {
+    width:50px;
+    height:50px;
+    z-index: 2;
+    position: absolute;
+    left: 43%;
+    top:57%;
+    transform:translate(-50% , -50%);
+}
+@media (max-width: 600px) {
+
+  .logo-container img {
+      width:40px;
+      height:40px;
+      left: 40%;
+      top:60%
+  }
+}
+

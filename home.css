@@ -7,7 +7,7 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: auto auto; 
     gap: 40px; 
 }
 
@@ -42,11 +42,9 @@
     font-family: system-ui;
 }
 
-.header_image img {
-    width: 594px;
-    background-image: url('./images/sectoin background.png');
-    background-size: cover;
-    border-radius: 10%;
+.header_image  {
+    width:1053px;
+    height:1329px;
 }
 
 .form {
@@ -72,6 +70,12 @@
     background-color: #F1F1F1;
     border: none;
     border-radius: 10px;
+}
+
+.sign_image {
+    /* width:718.89px ;
+    height:830.28px ; */
+    margin-top:151px;
 }
 
 .sign_btn button {
