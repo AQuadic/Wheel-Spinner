@@ -9,7 +9,6 @@
     display: grid;
     grid-template-columns: auto auto;
     gap: 40px;
-    max-width: 1200px;
 }
 
 .content {
@@ -80,8 +79,7 @@
 }
 
 .sign_image {
-    /* width:718.89px ;
-    height:830.28px ; */
+    margin-left:-100px;
     margin-top:151px;
 }
 
@@ -93,6 +91,7 @@
     border-radius: 10px;
     width: 100%;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 @media (max-width: 1024px) {
@@ -103,16 +102,14 @@
     
     .sign_image {
         margin-top: 50px;
+        margin-left:0;
     }
+    
 }
 
 @media (max-width: 768px) {
     .home_page {
         padding: 10px;
-    }
-    
-    .content {
-        flex-direction: column;
     }
     
     .content h2 {
@@ -127,14 +124,16 @@
     .input-container label {
         font-size: 20px;
     }
+    
 }
 
 @media (max-width: 580px) {
     .content h2 {
         font-size: 20.79px;
     }
+    
     .header_image img {
-        width: 100%;
+        width: 125%;
         height: auto;
     }
     
