@@ -7,8 +7,9 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto; 
-    gap: 40px; 
+    grid-template-columns: auto auto;
+    gap: 40px;
+    max-width: 1200px;
 }
 
 .content {
@@ -39,12 +40,18 @@
     font-size: 13px;
     font-weight: 600;
     margin-top: -20px;
-    font-family: system-ui;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.header_image  {
-    width:1053px;
-    height:1329px;
+.header_image {
+    max-width: 100%;
+    height: auto;
+}
+
+.header_image img {
+    width: 100%;
+    height: auto;
+    max-width: 1053px;
 }
 
 .form {
@@ -82,25 +89,79 @@
     background-color: black;
     border: 1px solid black;
     color: white;
-    padding: 15px; 
+    padding: 15px;
     border-radius: 10px;
     width: 100%;
     margin-top: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .grid-container {
         grid-template-columns: 1fr;
-        gap: 20px; 
+        gap: 20px;
+    }
+    
+    .sign_image {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home_page {
+        padding: 10px;
+    }
+    
+    .content {
+        flex-direction: column;
+    }
+    
+    .content h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .header-logo p {
+        text-align: center;
+    }
+    
+    .input-container label {
+        font-size: 20px;
     }
 }
 
 @media (max-width: 580px) {
     .content h2 {
-        font-size: 20.79px; 
+        font-size: 20.79px;
     }
     .header_image img {
-        width: 100%; 
-        height: auto; 
+        width: 100%;
+        height: auto;
+    }
+    
+    .input-container label {
+        font-size: 18px;
+    }
+    
+    .input-container input {
+        padding: 10px;
+    }
+    
+    .sign_btn button {
+        padding: 12px;
     }
 }
+
+@media (max-width: 400px) {
+    .content h2 {
+        font-size: 18px;
+    }
+    
+    .header-logo p {
+        font-size: 11px;
+    }
+    
+    .input-container label {
+        font-size: 16px;
+    }
+}
+
