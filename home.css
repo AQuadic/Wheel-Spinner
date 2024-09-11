@@ -11,6 +11,10 @@
     gap: 40px;
 }
 
+html[dir="html"] .grid-container {
+    margin-left:80px;
+}
+
 .content {
     display: flex;
     align-items: center;

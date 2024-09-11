@@ -49,6 +49,7 @@ body {
   line-height: 1;
   text-transform: lowercase;
   /* overflow: hidden; */
+  margin-left:30px;
 }
 
 .deal-wheel > * {
@@ -90,6 +91,9 @@ body {
   transform: rotate(var(--rotate));
   user-select: none;
 }
+html[dir="rtl"] .prize {
+  left:-51%;
+}
 
 .cap {
   --cap-size: calc(var(--size) / 4);
@@ -116,6 +120,10 @@ body {
   z-index: 1;
   clip-path: polygon(20% 0, 100% 50%, 20% 100%, 0% 50%);
   transform-origin: center left;
+}
+
+html[dir="rtl"] .ticker {
+  left:-97%;
 }
 
 .btn-spin {
@@ -306,8 +314,12 @@ body {
 
 .header-logo p {
   position: relative;
-    left: 12%;
+    margin-left:90px;
     margin-top: -36px;
+}
+
+html[dir="rtl"] .header-logo p {
+  margin-right:80px;
 }
 
 .logo-container img {
@@ -315,9 +327,13 @@ body {
     height:50px;
     z-index: 2;
     position: absolute;
-    left: 45%;
+    left: 46%;
     top:48%;
     transform:translate(-50% , -50%);
+}
+
+html[dir="rtl"] .logo-container img {
+  left: 40%;
 }
 @media (max-width: 600px) {
 
@@ -336,7 +352,7 @@ body {
   }
   
   .container {
-    height:350px;
+    height:480px;
   }
   
   
@@ -362,7 +378,17 @@ body {
     transform:rotate(90deg)
   }
   .logo-container img {
-    left: 39%;
+    left: 44%;
+    top:46%
+}
+}
+
+@media (max-width: 450px) {
+  .container {
+    height:370px;
+  }
+  .logo-container img {
+    left: 41%;
     top:46%
 }
 }
