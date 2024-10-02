@@ -9,6 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Shrikhand&display=swap" rel="stylesheet">
 
+    <style>
+        
+ #client-button {
+  position: relative;
+  left: 70%;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+html[dir="rtl"] #client-button {
+  right: 70%;
+}
+    </style>
 </head>
 <link rel="icon" href="./images/watania.webp" type="image/png">
 
@@ -32,6 +49,8 @@
         
     
         <div class="">
+            <button id="client-button" style="display: none;">Next Client</button> 
+
             <div class="header-logo">
                 <img src="./images/Group93.webp" alt="headline">
                 <div class="content">
@@ -43,12 +62,13 @@
             <div id="congratulations" style="display: none;">
                 <h2 id="congratulations-text"></h2>
                 <h2 class="user_name">Hassan Hamdy</h2>
-                <p>Invoice amount, 100000 </p>
-                <div class="" style="display: flex; align-items: center; justify-content: center;">
+                <p>Invoice amount, 100000</p>
+                <div style="display: flex; align-items: center; justify-content: center;">
                     <img id="congratulations-image" style="width: 30%; height: 30%;" alt="Prize Image" />
                 </div>
-                <button>Print</button>
+                <button id="print-button">Print</button>
             </div>
+            
         </div>
     </div>
     <script src="./script.js"></script>

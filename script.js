@@ -102,13 +102,16 @@ const displayPrize = (selectedPrize) => {
   const congratsMessage = document.getElementById("congratulations");
   const congratsText = document.getElementById("congratulations-text");
   const congratsImage = document.getElementById("congratulations-image");
+  const clientButton = document.getElementById("client-button"); 
 
   if (congratsMessage && congratsText && congratsImage) {
-    congratsText.innerText = `Congratulations! You won ${selectedPrize.text}!`;
-    congratsImage.src = selectedPrize.image;
-    congratsMessage.style.display = 'flex';
-    congratsMessage.style.flexDirection = 'column';
-    congratsMessage.style.alignItems = 'center';    
+      congratsText.innerText = `Congratulations! You won ${selectedPrize.text}!`;
+      congratsImage.src = selectedPrize.image;
+      congratsMessage.style.display = 'flex';
+      congratsMessage.style.flexDirection = 'column';
+      congratsMessage.style.alignItems = 'center';
+      
+      clientButton.style.display = 'block';
   }
 };
 
